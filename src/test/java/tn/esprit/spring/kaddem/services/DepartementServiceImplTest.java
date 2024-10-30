@@ -35,6 +35,7 @@ public class DepartementServiceImplTest {
 		List<Departement> departements = new ArrayList<>();
 		departements.add(new Departement(1, "Informatique"));
 		departements.add(new Departement(2, "Mathematiques"));
+		departements.add(new Departement(3, "toutsquiest"));
 
 		when(departementRepository.findAll()).thenReturn(departements);
 
@@ -42,7 +43,7 @@ public class DepartementServiceImplTest {
 		List<Departement> result = departementService.retrieveAllDepartements();
 
 		// Then
-		assertThat(result).hasSize(2);
+		assertThat(result).hasSize(3);
 		assertThat(result).containsAll(departements);
 		verify(departementRepository, times(1)).findAll();
 	}
