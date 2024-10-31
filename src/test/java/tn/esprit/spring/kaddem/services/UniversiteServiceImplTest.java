@@ -5,14 +5,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -98,6 +101,23 @@ public class UniversiteServiceImplTest {
 
         // Assert
         verify(universiteRepository, times(1)).delete(u);
+    }
+    @Test
+    void testAssignUniversiteToDepartement() {
+        Universite universite = new Universite(1, "Science University");
+        Departement departement = new Departement(1, "Computer Science");
+        universite.setDepartements(new HashSet<>());
+
+        when(universiteRepository.findById(1)).thenReturn(Optional.of(universite));
+        when(departementRepository.findById(1)).thenReturn(Optional.of(departement));
+        when(universiteRepository.save(universite)).thenReturn(universite);
+
+        universiteService.assignUniversiteToDepartement(1, 1);
+
+        assertTrue(universite.getDepartements().contains(departement));
+        verify(universiteRepository, times(1)).findById(1);
+        verify(departementRepository, times(1)).findById(1);
+        verify(universiteRepository, times(1)).save(universite);
     }
 
 }
