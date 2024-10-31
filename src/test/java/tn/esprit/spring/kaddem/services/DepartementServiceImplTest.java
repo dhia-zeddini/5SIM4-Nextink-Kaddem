@@ -52,7 +52,7 @@ public class DepartementServiceImplTest {
 	public void testAddDepartement() {
 		// Given
 		Departement departement = new Departement("Informatique");
-		Departement savedDepartement = new Departement(1, "Informatique");
+		Departement savedDepartement = new Departement(1, "science");
 
 		when(departementRepository.save(any(Departement.class))).thenReturn(savedDepartement);
 
