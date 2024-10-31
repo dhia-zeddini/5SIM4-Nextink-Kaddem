@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  server:
+    image: "dhiazeddini/meddhiazeddini-5sim4-nexthink-kaddem:${TAG}"
+    restart: always
+    ports:
+      - 8089:8089
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/tpfoyerdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  mysqldb:
+    image: "mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
