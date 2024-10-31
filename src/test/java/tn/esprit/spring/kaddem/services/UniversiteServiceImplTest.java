@@ -11,6 +11,7 @@ import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,4 +71,33 @@ public class UniversiteServiceImplTest {
         assertEquals("Updated University Name", updatedUniversite.getNomUniv());
         verify(universiteRepository, times(1)).save(universite);
     }
+    @Test
+    void testRetrieveUniversite() {
+        // Arrange
+        Integer id = 1;
+        Universite u = new Universite();
+        when(universiteRepository.findById(id)).thenReturn(Optional.of(u));
+
+        // Act
+        Universite result = universiteService.retrieveUniversite(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(u, result);
+        verify(universiteRepository, times(1)).findById(id);
+    }
+    @Test
+    void testDeleteUniversite() {
+        // Arrange
+        Integer id = 1;
+        Universite u = new Universite();
+        when(universiteRepository.findById(id)).thenReturn(Optional.of(u));
+
+        // Act
+        universiteService.deleteUniversite(id);
+
+        // Assert
+        verify(universiteRepository, times(1)).delete(u);
+    }
+
 }
