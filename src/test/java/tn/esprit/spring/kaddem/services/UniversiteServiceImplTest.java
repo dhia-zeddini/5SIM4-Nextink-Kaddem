@@ -55,5 +55,19 @@ public class UniversiteServiceImplTest {
         assertEquals(2, result.size());
         verify(universiteRepository, times(1)).findAll();
     }
+    @Test
+    void testUpdateUniversite() {
+        // Arrange
+        Universite universite = new Universite(1, "Old University Name");
+        universite.setNomUniv("Updated University Name");
+        when(universiteRepository.save(universite)).thenReturn(universite);
 
+        // Act
+        Universite updatedUniversite = universiteService.updateUniversite(universite);
+
+        // Assert
+        assertNotNull(updatedUniversite);
+        assertEquals("Updated University Name", updatedUniversite.getNomUniv());
+        verify(universiteRepository, times(1)).save(universite);
+    }
 }
