@@ -28,10 +28,22 @@ public class UniversiteServiceImplTest {
     private UniversiteServiceImpl universiteService;
 
     @Test
+    void testAddUniversite() {
+        Universite universite = new Universite("Tech University");
+
+        when(universiteRepository.save(universite)).thenReturn(universite);
+
+        Universite savedUniversite = universiteService.addUniversite(universite);
+
+        assertNotNull(savedUniversite);
+        assertEquals("Tech University", savedUniversite.getNomUniv());
+        verify(universiteRepository, times(1)).save(universite);
+    }
+    @Test
     void testRetrieveAllUniversites() {
         // Arrange
-        Universite u1 = new Universite();
-        Universite u2 = new Universite();
+        Universite u1 = new Universite(1,"Tech University");
+        Universite u2 = new Universite(2,"Buisness University");
         List<Universite> universiteList = Arrays.asList(u1, u2);
         when(universiteRepository.findAll()).thenReturn(universiteList);
 
@@ -43,6 +55,5 @@ public class UniversiteServiceImplTest {
         assertEquals(2, result.size());
         verify(universiteRepository, times(1)).findAll();
     }
-
 
 }
