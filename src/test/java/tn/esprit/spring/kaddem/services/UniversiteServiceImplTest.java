@@ -10,10 +10,7 @@ import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -119,5 +116,24 @@ public class UniversiteServiceImplTest {
         verify(departementRepository, times(1)).findById(1);
         verify(universiteRepository, times(1)).save(universite);
     }
+    @Test
+    void testRetrieveDepartementsByUniversite() {
+        Departement departement1 = new Departement("Physics");
+        Departement departement2 = new Departement("Chemistry");
+        Set<Departement> departements = new HashSet<>();
+        departements.add(departement1);
+        departements.add(departement2);
 
+        Universite universite = new Universite(1, "Science University");
+        universite.setDepartements(departements);
+
+        when(universiteRepository.findById(1)).thenReturn(Optional.of(universite));
+
+        Set<Departement> result = universiteService.retrieveDepartementsByUniversite(1);
+
+        assertEquals(2, result.size());
+        assertTrue(result.contains(departement1));
+        assertTrue(result.contains(departement2));
+        verify(universiteRepository, times(1)).findById(1);
+    }
 }
