@@ -23,6 +23,15 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysql                       # Assurez-vous que le conteneur MySQL est prêt avant de démarrer l'application
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    ports:
+      - "9090:9090"  # Port sur lequel Prometheus sera accessible
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Monte le fichier prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'  # Spécifie le fichier de configuration
 
 volumes:
   mysql_data:
