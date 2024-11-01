@@ -24,7 +24,7 @@ services:
     depends_on:
       - mysql                       # Assurez-vous que le conteneur MySQL est prêt avant de démarrer l'application
   prometheus:
-    image: prometheus
+    image: prom/prometheus
     restart: always
     ports:
       - "9090:9090"
