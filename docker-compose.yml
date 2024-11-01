@@ -8,6 +8,8 @@ services:
       - 8089:8089
     depends_on:
       - mysqldb
+      - prometheus
+      - grafana
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/tpfoyerdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
@@ -21,5 +23,26 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+
 volumes:
   mysql-data:
+  grafana-data:
