@@ -4,8 +4,10 @@ WORKDIR /app
 
 ARG NEXUSUSERNAME
 ARG NEXUSPASSWORD
-RUN  curl -u $NEXUSUSERNAME:$NEXUSPASSWORD -O http://192.168.33.10:8081/repository/maven-releases/tn/esprit/spring/kaddem/3.0/kaddem-3.0.jar
+ARG PROJECTVERSION
+
+RUN  curl -u $NEXUSUSERNAME:$NEXUSPASSWORD -O http://192.168.33.10:8081/repository/maven-releases/tn/esprit/spring/kaddem/$PROJECTVERSION/kaddem-$PROJECTVERSION.jar
 
 EXPOSE 8089
 
-ENTRYPOINT ["java", "-jar", "/app/kaddem-3.0.jar"]
+ENTRYPOINT ["java", "-jar", "/app/kaddem-$PROJECTVERSION.jar"]
