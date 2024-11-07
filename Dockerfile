@@ -6,8 +6,12 @@ ARG NEXUSUSERNAME
 ARG NEXUSPASSWORD
 ARG PROJECTVERSION
 
+RUN echo "Project Version: $PROJECTVERSION"
+
 RUN  curl -u $NEXUSUSERNAME:$NEXUSPASSWORD -O http://192.168.33.10:8081/repository/maven-releases/tn/esprit/spring/kaddem/${PROJECTVERSION}/kaddem-${PROJECTVERSION}.jar
+
+ENV JAR_FILE=kaddem-$PROJECTVERSION.jar
 
 EXPOSE 8089
 
-ENTRYPOINT ["java", "-jar", "/app/kaddem-${PROJECTVERSION}.jar"]
+ENTRYPOINT ["java", "-jar", "/app/$JAR_FILE"]
