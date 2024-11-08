@@ -10,4 +10,4 @@ RUN  curl -u $NEXUSUSERNAME:$NEXUSPASSWORD -O http://192.168.33.10:8081/reposito
 
 EXPOSE 8089
 
-ENTRYPOINT ["java", "-jar", "/app/kaddem-4.0.jar"]
+ENTRYPOINT ["java", "-jar", "/app/kaddem.jar"]
