@@ -16,7 +16,7 @@ FROM openjdk:17
 WORKDIR /app
 
 # Copier le jar construit depuis l'étape de construction
-COPY --from=builder /app/target/kaddem-0.0.2.jar app.jar
+COPY --from=builder /app/target/kaddem-0.0.4.jar app.jar
 
 # Exposer le port sur lequel l'application va s'exécuter
 EXPOSE 8089
