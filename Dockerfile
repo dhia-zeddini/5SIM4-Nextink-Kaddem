@@ -14,7 +14,7 @@ ENV JAR_FILE="kaddem-${PROJECTVERSION}.jar"
 
 RUN echo "Project Version: $JAR_FILE"
 
-EXPOSE 8089
+EXPOSE 9009
 
 # Use the environment variable in the ENTRYPOINT
 ENTRYPOINT ["java", "-jar", "/app/${JAR_FILE}"]

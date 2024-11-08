@@ -5,7 +5,7 @@ services:
     image: "dhiazeddini/meddhiazeddini-5sim4-nexthink-kaddem:${TAG}"
     restart: always
     ports:
-      - 8089:8089
+      - 9009:9009
     depends_on:
       - mysqldb
     environment:
