@@ -1,5 +1,6 @@
 package tn.esprit.spring.kaddem.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -21,7 +22,10 @@ public class Contrat implements Serializable{
     private Specialite specialite;
     private Boolean archive;
     private Integer montantContrat;
+
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference // This designates this field as the parent in the serialization
     private Etudiant etudiant;
 
     public Contrat() {

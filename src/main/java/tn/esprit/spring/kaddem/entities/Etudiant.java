@@ -1,6 +1,7 @@
 package tn.esprit.spring.kaddem.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
@@ -20,7 +21,10 @@ public class Etudiant implements Serializable{
     private String prenomE;
     @Enumerated(EnumType.STRING)
     private Option op;
+
+
     @OneToMany(mappedBy="etudiant", cascade = CascadeType.ALL)
+    @JsonBackReference // This designates this field as the child in the serialization
     @JsonIgnore
     private Set<Contrat> Contrats;
     @ManyToOne
