@@ -11,10 +11,10 @@ ENV NEXUS_URL="http://192.168.33.10:8085"
 ARG VERSION
 
 # Set the path to the JAR file in Nexus using the version argument
-ENV JAR_FILE_PATH="/repository/maven-releases/tn/esprit/kaddem/${VERSION}/kaddem-${VERSION}.jar"
+ENV JAR_FILE_PATH="/repository/maven-releases/tn/esprit/spring/kaddem/${VERSION}/kaddem-${VERSION}.jar"
 
 # Download the JAR file from Nexus using wget
-RUN curl -o devops_project.jar "${NEXUS_URL}${JAR_FILE_PATH}"
+RUN curl -o kaddem.jar "${NEXUS_URL}${JAR_FILE_PATH}"
 
 # Command to run the Spring Boot application using the downloaded JAR
-ENTRYPOINT ["java", "-jar", "devops_project.jar"]
+ENTRYPOINT ["java", "-jar", "kaddem.jar"]
