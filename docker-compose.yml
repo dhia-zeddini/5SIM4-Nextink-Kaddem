@@ -1,26 +1,54 @@
-version: '3'
+# services:
+#   server:
+#     image: "dhiazeddini/meddhiazeddini-5sim4-nexthink-kaddem:${TAG}"
+#     restart: always
+#     ports:
+#       - 9009:9009
+#     depends_on:
+#       - mysqldb
+#     environment:
+#       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/tpfoyerdb?createDatabaseIfNotExist=true
+#       SPRING_DATASOURCE_USERNAME: root
+#       SPRING_DATASOURCE_PASSWORD: root
+#
+#   mysqldb:
+#     image: "mysql"
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#
+# volumes:
+#   mysql-data:
+
+
+version: '3.8'
 
 services:
-  server:
-    image: "dhiazeddini/meddhiazeddini-5sim4-nexthink-kaddem:${TAG}"
-    restart: always
+  app:
+    image: rebhyy/kaddem:${BUILD_NUMBER} # Docker image for your Spring Boot app
+    container_name: kaddem-app
     ports:
-      - 9009:9009
-    depends_on:
-      - mysqldb
+      - "9009:9009" # Map port 9009 on the host to the app's port
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/tpfoyerdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kaddem?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: root # Set this to the MySQL root password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
 
-  mysqldb:
-    image: "mysql"
-    restart: always
+  db:
+    image: mysql:8
+    container_name: kaddem-db
+    ports:
+      - "3306:3306" # Map port 3306 for MySQL access
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kaddem
+      MYSQL_ROOT_PASSWORD: root # Set the root password for MySQL here
     volumes:
-      - mysql-data:/var/lib/mysql
-
+      - db_data:/var/lib/mysql # Persist data in a named volume
 
 volumes:
-  mysql-data:
+  db_data: # Named volume to persist MySQL data
