@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: rebhyy/kaddem:${VERSION} # Replace with your Jenkins pipeline's `version` variable
+    image: rebhyy/kaddem:${BUILD_VERSION} # Use ${BUILD_VERSION} passed in the Jenkins pipeline
     container_name: kaddem-app
     ports:
       - "9009:9009" # Map port 9009 on the host to the app's port
