@@ -27,7 +27,7 @@ version: '3.8'
 
 services:
   app:
-    image: rebhyy/kaddem:${BUILD_NUMBER} # Docker image for your Spring Boot app
+    image: rebhyy/kaddem:${BUILD_NUMBER:-latest} # Use 'latest' if BUILD_NUMBER is not set
     container_name: kaddem-app
     ports:
       - "9009:9009" # Map port 9009 on the host to the app's port
