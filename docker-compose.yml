@@ -48,7 +48,22 @@ services:
       MYSQL_DATABASE: kaddem
       MYSQL_ROOT_PASSWORD: root # Set the root password for MySQL here
     volumes:
-      - db_data:/var/lib/mysql # Persist data in a named volume
+      - db_data:/var/lib/mysql # Persist data in a named volum
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    ports:
+      - "8089:80" # Map phpMyAdmin to port 8081 on the host
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+    volumes:
+      - phpmyadmin_data:/sessions # Persist phpMyAdmin sessions
 
 volumes:
   db_data: # Named volume to persist MySQL data
+  phpmyadmin_data: # Named volume to persist phpMyAdmin sessions
+
