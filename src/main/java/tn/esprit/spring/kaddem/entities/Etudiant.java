@@ -25,7 +25,6 @@ public class Etudiant implements Serializable{
 
     @OneToMany(mappedBy="etudiant", cascade = CascadeType.ALL)
     @JsonBackReference // This designates this field as the child in the serialization
-    @JsonIgnore
     private Set<Contrat> Contrats;
     @ManyToOne
     @JsonIgnore
