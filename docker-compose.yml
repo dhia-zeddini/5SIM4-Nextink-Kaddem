@@ -13,7 +13,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   spring-app:
-    build: .
+    image: fedibenromdhane/ci-cdkaddemproject-spring-app:latest
     restart: always
     ports:
       - "8089:8089"
