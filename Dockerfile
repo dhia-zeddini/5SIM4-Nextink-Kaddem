@@ -2,7 +2,7 @@
 FROM openjdk:17
 
 # Expose port 8082 for the application to allow external access
-EXPOSE 8082
+EXPOSE 8089
 
 # Set the Nexus URL environment variable
 ENV NEXUS_URL="http://192.168.33.10:8085"
