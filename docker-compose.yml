@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: rebhyy/kaddem:${BUILD_NUMBER} # Use specific BUILD_NUMBER tag
+    image: rebhyy/kaddem:${BUILD_NUMBER} # Use ${BUILD_NUMBER} from .env file
     container_name: kaddem-app
     ports:
       - "9009:9009" # Map port 9009 on the host to the app's port
