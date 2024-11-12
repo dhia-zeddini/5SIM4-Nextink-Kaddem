@@ -1,20 +1,9 @@
-FROM openjdk:17
-
-RUN groupadd -r appgroup && useradd -r -g appgroup appuser
-
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-ARG NEXUSUSERNAME
-ARG NEXUSPASSWORD
-ARG PROJECTVERSION
+# Define a build argument to accept the JAR file name
+ARG JAR_FILE
+COPY target/${JAR_FILE} app.jar
 
-RUN curl -u $NEXUSUSERNAME:$NEXUSPASSWORD -O http://192.168.33.10:8081/repository/maven-releases/tn/esprit/spring/kaddem/${PROJECTVERSION}/kaddem-${PROJECTVERSION}.jar
-
-RUN chown -R appuser:appgroup /app
-
-USER appuser
-ENV JAR_FILE="kaddem-${PROJECTVERSION}.jar"
-
-EXPOSE 9009
-
-ENTRYPOINT ["sh", "-c", "java -jar /app/${JAR_FILE}"]
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
