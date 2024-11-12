@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   server:
     image: "bilel101/bilelyousfi_5sim4_nexthink_kaddem"
