@@ -3,7 +3,7 @@ services:
     image: "bilel101/bilelyousfi_5sim4_nexthink_kaddem:latest"
     restart: always
     ports:
-      - 9009:9009
+      - 8089:8089
     depends_on:
       - mysqldb
     environment:
