@@ -62,14 +62,6 @@ services:
     depends_on:
       - prometheus
 
-  jmeter:
-    image: justb4/jmeter:latest
-    container_name: jmeter
-    depends_on:
-      - app
-    volumes:
-      - ./jmeter:/jmeter
-    entrypoint: [ "" ]
 
 
 volumes:
