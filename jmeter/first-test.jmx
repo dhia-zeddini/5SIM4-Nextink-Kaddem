@@ -8,7 +8,7 @@
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="JMeter Test">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -38,9 +38,9 @@
   &quot;archive&quot;: true,&#xd;
   &quot;montantContrat&quot;: 10000,&#xd;
   &quot;etudiant&quot;: {&#xd;
-    &quot;nomE&quot;: &quot;Doe&quot;,&#xd;
-    &quot;prenomE&quot;: &quot;Jane&quot;,&#xd;
-    &quot;op&quot;: &quot;GAMIX&quot;,&#xd;
+    &quot;nomE&quot;: &quot;Rebhi&quot;,&#xd;
+    &quot;prenomE&quot;: &quot;Ahmed&quot;,&#xd;
+    &quot;op&quot;: &quot;SIM&quot;,&#xd;
     &quot;contrats&quot;: []&#xd;
   }&#xd;
 }&#xd;
