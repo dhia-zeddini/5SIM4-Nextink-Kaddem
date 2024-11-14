@@ -1,5 +1,6 @@
 package tn.esprit.spring.kaddem.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,8 @@ import tn.esprit.spring.kaddem.services.IUniversiteService;
 
 import java.util.List;
 import java.util.Set;
+
+@Tag(name="Gestion universite")
 
 @RestController
 @AllArgsConstructor
